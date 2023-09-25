@@ -18,7 +18,7 @@ class MenusHelper{
 			$datas  = MainMenu::create($menus);
 			return ResponseMessages::SUCCESS_MGS(StringConstants::MAIN_MENU_CREATE,$datas);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................create user menus.......................*/
@@ -28,7 +28,7 @@ class MenusHelper{
 			$datas   = UserMenu::create($menus);
 			return ResponseMessages::SUCCESS_MGS(StringConstants::USER_MENU_CREATE,$datas);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................create searchable menus.......................*/
@@ -38,7 +38,7 @@ class MenusHelper{
 			$datas  = SearchableMenu::create($menus);
 			return ResponseMessages::SUCCESS_MGS(StringConstants::SEARCHABLE_MENU_CREATE,$datas);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................create top menus.......................*/
@@ -48,7 +48,7 @@ class MenusHelper{
 			$datas  = TopMenu::create($menus);
 			return ResponseMessages::SUCCESS_MGS(StringConstants::TOP_MENU_CREATE,$datas);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	
@@ -95,12 +95,12 @@ class MenusHelper{
 			if ($type   === 'submenus') {
 				$menus  = MainMenu::with('sub_menus')->whereNotNull('menu_id')->get();
 			}else{
-				$menus  = MainMenu::with('sub_menus')->whereNull('menu_id')->get();
+				$menus  = MainMenu::with('sub_menus1')->whereNull('menu_id')->get();
 			}
 			$data  	    = new MenusResource($menus);
 			return ResponseMessages::SUCCESS_MGS('Main menus',$data);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................get user menus.......................*/
@@ -114,7 +114,7 @@ class MenusHelper{
 			$data  		= new MenusResource($menus);
 			return ResponseMessages::SUCCESS_MGS('User menus',$data);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................get searchable menus.......................*/
@@ -129,7 +129,7 @@ class MenusHelper{
 			return ResponseMessages::SUCCESS_MGS('Searchable menus',$data);
 
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................get top menus.......................*/
@@ -143,7 +143,7 @@ class MenusHelper{
 			$data  = new MenusResource($menus);
 			return ResponseMessages::SUCCESS_MGS('Top menus',$data);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 
@@ -158,7 +158,7 @@ class MenusHelper{
 			$data  	    = new MenusResource($menus);
 			return ResponseMessages::SUCCESS_MGS('Main menus',$data);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................get single user menus and sub.......................*/
@@ -172,7 +172,7 @@ class MenusHelper{
 			$data  		= new MenusResource($menus);
 			return ResponseMessages::SUCCESS_MGS('User menus',$data);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................get single searchable menus and sub.......................*/
@@ -187,7 +187,7 @@ class MenusHelper{
 			return ResponseMessages::SUCCESS_MGS('Searchable menus',$data);
 
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................get Single single top menusand sub .......................*/
@@ -201,7 +201,7 @@ class MenusHelper{
 			$data  = new MenusResource($menus);
 			return ResponseMessages::SUCCESS_MGS('Top menus',$data);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 
@@ -214,7 +214,7 @@ class MenusHelper{
 			$getUpdatedData  = MainMenu::where('id',$id)->first();
 			return ResponseMessages::SUCCESS_MGS(StringConstants::MAIN_MENU_UPDATE,$getUpdatedData);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................update user menus.......................*/
@@ -225,7 +225,7 @@ class MenusHelper{
 			$getUpdatedData   = UserMenu::where('id',$id)->first();
 			return ResponseMessages::SUCCESS_MGS(StringConstants::USER_MENU_UPDATE,$getUpdatedData);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................update searchable menus.......................*/
@@ -236,7 +236,7 @@ class MenusHelper{
 			$getUpdatedData  = SearchableMenu::where('id',$id)->first();
 			return ResponseMessages::SUCCESS_MGS(StringConstants::SEARCHABLE_MENU_UPDATE,$getUpdatedData);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................update top menus.......................*/
@@ -247,7 +247,7 @@ class MenusHelper{
 			$getUpdatedData  = TopMenu::where('id',$id)->first();
 			return ResponseMessages::SUCCESS_MGS(StringConstants::TOP_MENU_UPDATE,$getUpdatedData);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	
@@ -292,7 +292,7 @@ class MenusHelper{
 			MainMenu::where('menu_id',$id)->delete();
 			return ResponseMessages::SUCCESS_MGS('Main menus deleted successfully',$data=[]);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................delete single user menus and sub.......................*/
@@ -304,7 +304,7 @@ class MenusHelper{
 			UserMenu::where('menu_id',$id)->delete();
 			return ResponseMessages::SUCCESS_MGS('User menus deleted successfully',$data=[]);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................delete single searchable menus and sub.......................*/
@@ -317,7 +317,7 @@ class MenusHelper{
 			return ResponseMessages::SUCCESS_MGS('Searchable menus deleted successfully',$data=[]);
 
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 	/*..................delete single top menusand sub .......................*/
@@ -329,7 +329,7 @@ class MenusHelper{
 			TopMenu::where('menu_id',$id)->delete();
 			return ResponseMessages::SUCCESS_MGS('Top menus deleted successfully',$data=[]);
 		} catch (Exception $e) {
-			
+			return ResponseMessages::ERRORS_MGS($e);
 		}
 	}
 }

@@ -10,6 +10,7 @@ interface Attributes
     const ACCOUNT_DELETE_CODE = 203;
     const CONTACT_API_CODE = 201;	
     const NOT_FOUND_CODE = 404; 
+    const SERVER_ERROR = 500; 
     const ERROR = 'error';
     const DATA = 'data';
     const CODE = 'code';

@@ -6,7 +6,12 @@ use App\Models\Setting;
 class SettingsHelper{
 
 	public static function getSettingsModules(){
-		$setting = Setting::get();
-		return new SettingsResource($setting);
+		try {
+			$setting = Setting::get();
+			return new SettingsResource($setting);
+		} catch (Exception $e) {
+        	Log::info($e);
+		}
+		
 	}
 }
